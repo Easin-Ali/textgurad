@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="TextGuard writing analysis workspace">
+<title>TextGuard · Writing analysis</title>
+<link rel="stylesheet" href="/style.css">
+<script src="/app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#tools">Skip to tools</a>
+<header><div class="wrap header"><a class="brand" href="/">Text<span>Guard</span></a><nav aria-label="Main"><a href="#tools">Workspace</a><a href="#faq">FAQ</a><button id="theme" type="button" aria-pressed="false">Dark mode</button></nav></div></header>
+<main class="wrap">
+<section class="hero"><h1>Review your writing</h1><p>Check AI writing signals, trace text matches, and revise your draft.</p></section>
+<section id="tools" aria-label="Writing tools">
+<div id="tabs" class="tabs" role="group" aria-label="Choose a tool">
+<button type="button" data-tool="detect" aria-pressed="true">AI Detector</button>
+<button type="button" data-tool="similarity" aria-pressed="false">Plagiarism</button>
+<button type="button" data-tool="rewrite" aria-pressed="false">Paraphraser</button>
+</div>
+<div class="work">
+<div class="editor">
+<div class="row"><label for="input"><strong>Your text</strong></label><button class="secondary" id="sample" type="button">Try a sample</button></div>
+<textarea id="input" dir="auto" rows="13" placeholder="Paste or type your text here…"></textarea>
+<div class="row small"><output id="count" for="input">0 words · 0 characters</output><button id="clear" class="text-button" type="button">Clear text</button></div>
+<label id="drop" class="drop"><input id="file" type="file" accept=".txt,.docx,.pdf"><span>Choose a file or drop it here</span><small>TXT, DOCX, PDF · Up to 10 MB</small></label>
+</div>
+<aside class="settings" aria-label="Analysis settings">
+<div><label for="language">Text language</label><select id="language"><option value="auto">Auto-detect</option><option value="en">English</option><option value="bn">Bangla</option><option value="hi">Hindi</option><option value="es">Spanish</option><option value="fr">French</option><option value="ar">Arabic</option></select></div>
+<div id="similarOptions" hidden>
+<fieldset><legend>Exclude from similarity</legend><label class="check"><input type="checkbox" value="quotes"> Quotations</label><label class="check"><input type="checkbox" value="citations"> In-text citations</label><label class="check"><input type="checkbox" value="bibliography"> References and bibliography</label></fieldset>
+<label class="drop library"><input id="references" type="file" accept=".txt,.docx,.pdf" multiple><span>Add private sources</span><small>Up to five documents</small></label><ul id="refList"></ul>
+</div>
+<div id="rewriteOptions" hidden>
+<label for="mode">Writing mode</label><select id="mode"><option>Standard</option><option>Fluent</option><option>Formal</option><option>Academic</option><option>Simple</option><option>Creative</option><option>Shorten</option><option>Expand</option></select>
+<label for="strength">Synonym strength <output id="strengthText">Medium</output></label><input id="strength" type="range" min="1" max="3" value="2">
+</div>
+<div class="consent"><label class="check"><input id="external" type="checkbox"> Allow external services</label><p id="availability">Checking provider configuration…</p><p>Enabled providers can receive the text or excerpts required for the selected check.</p></div>
+<button id="run" class="primary" type="button">Analyze text</button>
+</aside>
+</div>
+<div id="progressBox" hidden><progress id="progress" max="100"></progress><p id="progressText" role="status"></p><div class="skeleton" aria-hidden="true"></div></div>
+<div id="error" role="alert" hidden></div>
+<p id="announce" class="small" role="status"></p>
+<section id="results" aria-label="Results" hidden></section>
+</section>
+<section class="lower">
+<div class="panel"><h2>History</h2><label class="check"><input type="checkbox" id="remember"> Save result summaries on this browser</label><p class="small">Saved entries contain the tool, score or word count, and time. Your document text is excluded.</p><ul id="history"></ul><button id="delete" class="secondary" type="button">Delete my data</button></div>
+<div class="panel" id="faq"><h2>FAQ</h2>
+<details><summary>What does the AI score mean?</summary><p>Detectors provide probabilistic estimates and can flag human writing. The local demo score illustrates the interface and has no calibrated probability.</p></details>
+<details><summary>What does the similarity score cover?</summary><p>It is the share of analyzed words matched in the material actually retrieved or supplied. Search providers may return only snippets or abstracts. Review each match and citation in context.</p></details>
+<details><summary>What happens to my text?</summary><p>Text is processed by this server and held in your current workspace until cleared. External processing is opt-in. External providers apply their own retention policies.</p></details>
+</div>
+</section>
+</main>
+<footer><div class="wrap">TextGuard <span>·</span> Writing analysis</div></footer>
+</body></html>
